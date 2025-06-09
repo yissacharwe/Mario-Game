@@ -1,14 +1,16 @@
 #include <SFML/Graphics.hpp>
 #include "Game.h"
 #include "Camera.h"
+#include "Renderer.h"
 
 int main()
 {
    sf::RenderWindow window(sf::VideoMode(1200, 900), "BETTER Mario");
    sf::Clock deltaClock;
-   Camera camera;
+   Renderer renderer(window);
 
    Begin(window);
+
    while (window.isOpen())
    {
 	   float deltaTime = deltaClock.restart().asSeconds();
@@ -23,10 +25,8 @@ int main()
 	   window.setView(camera.getView(window.getSize()));
 	   Update(deltaTime);
 
-	   window.clear();
-	   
-	   Render(window);
-
-	   window.display();
+	   window.clear(sf::Color(20, 20, 20));
+	   Render(renderer);
+	   window.display();	  
    }
 }

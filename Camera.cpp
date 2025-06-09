@@ -1,7 +1,7 @@
 #include "Camera.h"
 
 Camera::Camera(float zoomLevel)
-	: zoomLevel(zoomLevel)
+	: zoomLevel(zoomLevel), position(0.0f, 0.0f)
 {
 }
 
@@ -19,6 +19,5 @@ sf::View Camera::getView(sf::Vector2u windowSize) const
 		// window is wider than it is tall
 		size = sf::Vector2f(zoomLevel * aspect, zoomLevel);
 
-	// return the view centered at (0, 0) with the calculated size
-	return sf::View(sf::Vector2f(0, 0), size);
+	return sf::View(position, size);
 }
